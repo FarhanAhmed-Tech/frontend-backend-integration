@@ -4,10 +4,12 @@ import cors from "cors"
 const app = express()
 
 const port = 8000
-app.listen(port)
+app.listen(port ,() => {
+    console.log(`Server is Running On Port ${port}`)
+})
 
 app.use(cors({
-    origin:"http://localhost:5173/"
+    origin:"http://localhost:5173"
 }))
 
 app.use(express.json())
