@@ -13,20 +13,28 @@ export default function App() {
     },
   ]
 
-  useEffect(() => {
-   axios.get("http://localhost:8000/user").then((res) => {
-      console.log(res);
-    }).catch((err:any) => {
-      alert(err)
-    })
-  },[])
+  const getResponse = () => {
+    axios.get("http://localhost:8000/user").then((res) => {
+       console.log(res.data);
+     }).catch((err:any) => {
+       alert(err)
+     })
+  }
 
   useEffect(() => {
-    axios.post("http://localhost:8000/", {
+    getResponse()
+  })
+
+  const getPost = () => {
+     axios.post("http://localhost:8000/", {
       names
     })
+  }
+  useEffect(() => {
+   getPost()
   }, [])
   return <>
-     
+   <button onClick={() => getResponse()}>Get</button>
+   <button onClick={() => getPost()}>Post</button>
   </>
 }
